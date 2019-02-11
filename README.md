@@ -16,14 +16,14 @@ This framework includes the following modules.
 1. `opencv2 4.0.0`
 2. `imgaug 0.2.6`
 3. `keras 2.2.4`
-4. `python 3`
+4. `python3`
 5. `tensorflow 1.11.0`
 
 ## Installation
 No need to install
 
 ## Run example
-`python(3) run_2.py [-h] --net NET [--epochs EPOCHS] [--batch_size BATCH_SIZE] [--gpu GPU] [--img_size IMG_SIZE]`
+`python run.py [-h] --net NET [--epochs EPOCHS] [--batch_size BATCH_SIZE] [--gpu GPU] [--img_size IMG_SIZE]`
 
 `-h, --help            show this help message and exit`
   `--net NET             The type of net work which is either unet, deeplab or custom.`
@@ -62,7 +62,7 @@ contains a generator with imgaug for custom model, unet and deeplab and a datase
 
 contains some utilties that will be used by any file. It contains padding_and_cropping function for inference stage.
 
-### Result
+## Result
 Result will be showed on the screen
 
 
