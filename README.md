@@ -63,7 +63,7 @@ optional arguments:
 
 * `mrcnn/`
 
-    * mrcnn
+    * [mrcnn](https://github.com/matterport/Mask_RCNN)
 
     again for `run.py`
 
