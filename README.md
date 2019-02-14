@@ -24,7 +24,7 @@ No need to install
 
 ## Run example
 ```
-usage: run_2.py [-h] --net NET [--epochs EPOCHS] [--batch_size BATCH_SIZE] [--gpu GPU] [--img_size IMG_SIZE] [--load_weights LOAD_WEIGHTS]
+usage: run.py [-h] --net NET [--epochs EPOCHS] [--batch_size BATCH_SIZE] [--gpu GPU] [--img_size IMG_SIZE] [--load_weights LOAD_WEIGHTS]
 
 A testing framework for detection, semantic seg and instance seg.
 
@@ -36,8 +36,24 @@ optional arguments:
   --gpu GPU             The id of the gpu used when training.
   --img_size IMG_SIZE   The size of input image
   --load_weights LOAD_WEIGHTS
-                        Use old weights or not (named net_img_size.h5)
+                        Use old weights or not (named net_imgSize.h5)
 ```
+
+### Example
+```
+python run.py --net deeplab --epochs 1000 --gpu 0 --img_size 192
+```
+Train a deeplab model with input image size of 192
+
+```
+python run.py --net unet --epochs 1000 --gpu 0 --img_size 192
+```
+Train a unet model with input image size of 192
+
+```
+python run.py --net custom --epochs 1000 --gpu 0 --img_size 192
+```
+Train a custom model with input image size of 192
 
 ## Structure
 ### Main function

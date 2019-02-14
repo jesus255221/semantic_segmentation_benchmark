@@ -45,13 +45,13 @@ def main():
     
     # Main function for evaluate
     parser = argparse.ArgumentParser(description = "A testing framework for detection, semantic seg and instance seg.")
-    parser.add_argument("--net", help="The type of net work which is either mrcnn, unet, deeplab or custom.",
+    parser.add_argument("--net", help="(str) The type of net work which is either mrcnn, unet, deeplab or custom.",
                        required=True, default="unet")
     parser.add_argument("--epochs", required=False, default=500, type=int)
     parser.add_argument("--batch_size", required=False, default=16, type=int)
-    parser.add_argument("--gpu", required=False, default="0", type=str, help="The id of the gpu used when training.")
-    parser.add_argument("--img_size", required=False, default=192, type=int, help="The size of input image")
-    parser.add_argument("--load_weights", required=False, default=False, type=bool, help="Use old weights or not (named net_img_size.h5)")
+    parser.add_argument("--gpu", required=False, default="0", type=str, help="(int) The id of the gpu used when training.")
+    parser.add_argument("--img_size", required=False, default=192, type=int, help="(int) The size of input image")
+    parser.add_argument("--load_weights", required=False, default=False, type=bool, help="(bool) Use old weights or not (named net_imgSize.h5)")
     
     
     # Parse argument
