@@ -8,6 +8,7 @@ from pycocotools.coco import COCO
 from glob import glob
 from os import listdir
 from imgaug import augmenters as iaa
+import imgaug as ia
 import random
 from pycocotools.cocostuffhelper import cocoSegmentationToSegmentationMap
 from keras.applications.resnet50 import preprocess_input
@@ -33,13 +34,7 @@ def generator(batch_size, image_list, image_shape, coco_instance, id_to_index, i
         - label: (batch_size, image_shape[0], image_shape[1], classes)
     """
     
-    aug = iaa.SomeOf((0, 3), [
-        iaa.Flipud(0.5), 
-        iaa.Fliplr(0.5), 
-        iaa.AdditiveGaussianNoise(scale=0.005*255),
-        iaa.Grayscale(alpha=(0.0, 0.5)),
-        iaa.GaussianBlur(sigma=(1.0)),
-        iaa.ContrastNormalization((0.5, 1.5), per_channel=0.5)])
+    aug, masks_hook = utils.img_aug()
     
     def f(id):
         if id != 0:
@@ -100,8 +95,12 @@ def generator(batch_size, image_list, image_shape, coco_instance, id_to_index, i
                 
                 index += 1
                 i += 1
-            #if is_training:
-            #    all_img = aug.augment_images(all_img)
+            
+            if is_training:
+                aug_det = aug.to_deterministic()
+                all_img = aug.augment_images(all_img)
+                label = aug.augment_images(label, hooks=masks_hooks)
+                
             
             #all_img = preprocess_input(all_img, mode = "torch")
             all_img = preprocess_input(all_img)

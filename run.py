@@ -37,7 +37,7 @@ def main():
     Main function... (what do you expect me to say...)
 
     Args:
-        - input_size: the size of image
+        - none
 
     Returns:
         - none
@@ -45,13 +45,13 @@ def main():
     
     # Main function for evaluate
     parser = argparse.ArgumentParser(description = "A testing framework for detection, semantic seg and instance seg.")
-    parser.add_argument("--net", help="(str) The type of net work which is either mrcnn, unet, deeplab or custom.",
+    parser.add_argument("--net", help="The type of net work which is either mrcnn, unet, deeplab or custom.",
                        required=True, default="unet")
     parser.add_argument("--epochs", required=False, default=500, type=int)
     parser.add_argument("--batch_size", required=False, default=16, type=int)
-    parser.add_argument("--gpu", required=False, default="0", type=str, help="(int) The id of the gpu used when training.")
-    parser.add_argument("--img_size", required=False, default=192, type=int, help="(int) The size of input image")
-    parser.add_argument("--load_weights", required=False, default=False, type=bool, help="(bool) Use old weights or not (named net_imgSize.h5)")
+    parser.add_argument("--gpu", required=False, default="0", type=str, help="The id of the gpu used when training.")
+    parser.add_argument("--img_size", required=False, default=192, type=int, help="The size of input image")
+    parser.add_argument("--load_weights", required=False, default=False, type=bool, help="Use old weights or not (named net_img_size.h5)")
     
     
     # Parse argument
@@ -101,7 +101,7 @@ def main():
             output = KL.Activation("softmax")(deeplab_model.output)
             model = KM.Model(deeplab_model.input, output)
         elif net_type == "custom":
-            model = model.custom_model(input_shape = input_size, classes = len(id_to_index))
+            model = model.custom_model(input_shape=(img_size, img_size, 3), classes=len(id_to_index))
             
             
     elif net_type == "mrcnn":
@@ -128,6 +128,8 @@ def main():
         dataset_val.load_coco(Config.COCO_validation_ann_path, "val", year=Config.DEFAULT_DATASET_YEAR)
         dataset_val.prepare()
         
+    elif net_type == "custom_inst":
+        model = model.custom_inst_model(input_shape = input_size, classes = len(id_to_index))
         
 
 
@@ -140,7 +142,7 @@ def main():
         if args.load_weights:
             try:
                 model.load_weights(net_type + "_" + str(img_size) + ".h5")
-                print("weight loaded!")
+                print("weights loaded!")
             except:
                 print("weights not found!")
 
@@ -169,7 +171,7 @@ def main():
             image = val_list[i]
             image_id = int(image.replace(".jpg", '')[-12:])
 
-            cropping_image, padding_dims, original_size = utils.padding_and_cropping(image, (input_size[0], input_size[1]))
+            cropping_image, padding_dims, original_size = utils.padding_and_cropping(image, (img_size, img_size))
             cropping_image = preprocess_input(cropping_image, mode = "torch")
 
             result = model.predict(cropping_image)
