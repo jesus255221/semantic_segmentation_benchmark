@@ -13,7 +13,8 @@ This framework includes the following modules.
     1. official [pycocotools](https://github.com/cocodataset/cocoapi)
 
 ## Dependencies
-1. `opencv2 4.0.0`
+### Testing env
+1. `opencv 4.0.0`
 2. `imgaug 0.2.6`
 3. `keras 2.2.4`
 4. `python 3`
