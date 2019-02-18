@@ -2,6 +2,7 @@ from pycocotools import mask
 import cv2 
 import numpy as np
 from imgaug import augmenters as iaa
+import imgaug as ia
 
 def padding_and_cropping(image, image_shape):
     """padding and cropping images

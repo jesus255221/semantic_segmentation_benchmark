@@ -27,11 +27,11 @@ No need to install
 ```
 usage: run.py [-h] --net NET [--epochs EPOCHS] [--batch_size BATCH_SIZE] [--gpu GPU] [--img_size IMG_SIZE] [--load_weights LOAD_WEIGHTS]
 
-A testing framework for detection, semantic seg and instance seg.
+A testing framework for semantic seg.
 
 optional arguments:
   -h, --help            show this help message and exit
-  --net NET             The type of net work which is either mrcnn, unet, deeplab or custom.
+  --net NET             The type of net work which is either unet, deeplab or custom.
   --epochs EPOCHS
   --batch_size BATCH_SIZE
   --gpu GPU             The id of the gpu used when training.

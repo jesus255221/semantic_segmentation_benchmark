@@ -13,8 +13,8 @@ import random
 from pycocotools.cocostuffhelper import cocoSegmentationToSegmentationMap
 from keras.applications.resnet50 import preprocess_input
 import keras
-import utils
-import config 
+import utils as utilities
+import config
 
 def generator(batch_size, image_list, image_shape, coco_instance, id_to_index, is_training):
     """Generator
@@ -34,7 +34,7 @@ def generator(batch_size, image_list, image_shape, coco_instance, id_to_index, i
         - label: (batch_size, image_shape[0], image_shape[1], classes)
     """
     
-    aug, masks_hook = utils.img_aug()
+    aug, mask_hook = utilities.img_aug()
     
     def f(id):
         if id != 0:
@@ -99,7 +99,7 @@ def generator(batch_size, image_list, image_shape, coco_instance, id_to_index, i
             if is_training:
                 aug_det = aug.to_deterministic()
                 all_img = aug.augment_images(all_img)
-                label = aug.augment_images(label, hooks=masks_hooks)
+                label = aug.augment_images(label, hooks=mask_hook)
                 
             
             #all_img = preprocess_input(all_img, mode = "torch")
