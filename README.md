@@ -17,7 +17,7 @@ This framework includes the following modules.
 1. `opencv 4.0.0`
 2. `imgaug 0.2.6`
 3. `keras 2.2.4`
-4. `python 3`
+4. `python 3.5`
 5. `tensorflow 1.11.0`
 
 ## Installation
