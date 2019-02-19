@@ -36,11 +36,11 @@ class CocoConfig(mrcnn_config):
     # Number of classes (including background)
     NUM_CLASSES = 1 + 80  # COCO has 80 classes
     # Path to trained weights file
-    COCO_MODEL_PATH = "/workspace/david/automatic_testing/Mask_RCNN-master/samples/coco/mask_rcnn_coco.h5"
+    COCO_MODEL_PATH = "/workspace/david/automatic_testing/mask_rcnn_coco.h5"
 
     # Directory to save logs and model checkpoints, if not provided
     # through the command line argument --logs
-    DEFAULT_LOGS_DIR = "/workspace/david/automatic_testing/Mask_RCNN-master/samples/coco/logs"
+    DEFAULT_LOGS_DIR = "/workspace/david/automatic_testing/mrcnn_logs"
     DEFAULT_DATASET_YEAR = "2017"
     
     # path of COCO dataset
